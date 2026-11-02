@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  brpc-java JNI 适配 URMA —— 独立模块 pom
+  本模块独立构建，不注册进 root pom，避免影响 brpc-java 主干构建。
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.baidu.brpc</groupId>
+    <artifactId>brpc-java-urma</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>brpc-java-urma</name>
+    <description>brpc-java JNI 适配 URMA —— 让 brpc-java 作为 client 走 URMA 真硬件数据面</description>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!-- 纯 JDK + JNI 实现，不依赖第三方库；
+         如需与 brpc-java-communication 集成，再按需添加 protobuf-java 等依赖。 -->
+    <dependencies>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.baidu.brpc.urma.UrmaPerfTestClient</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
